@@ -22,7 +22,7 @@ export default function createSiteMap(path : string = "./frontend/pages/**/*.tsx
     console.log("Building SiteMap...");
     let xml = 
     `<?xml version="1.0" encoding="UTF-8"?>\n\n` +
-    `<urlset xlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
     `\t{{URLS HERE}}\n` +
     `</urlset>\n`
 
