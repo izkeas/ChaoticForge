@@ -2,15 +2,17 @@ import fs from 'fs'
 import Path from 'path'
 import { fileURLToPath } from 'url'
 import express, { Request, Response} from 'express'
-import { url, hostPort } from './config.js'
+import { url, hostPort, http } from './config.js'
 import cors from "cors"
 import {ViteDevServer, createServer} from "vite"
 import { ServerData } from './ServerData.js'
-import apiRouter from './ApiRouter.js'
 import BodyParser from 'body-parser'
 import Compression from 'compression'
 import ServeStatic from 'serve-static'
 import dotenv from "dotenv"
+
+import apiRouter from './ApiRouter.js'
+import createSiteMap from './CreateSiteMap.js'
 
 dotenv.config();
 
@@ -24,10 +26,10 @@ function log(text : string){
     console.log(text);
   }
 }
-
 async function createViteServer(){
   return await createServer({
     root: "./src/frontend",
+    publicDir : "./src/frontend/public",
     logLevel: isTest ? 'error' : 'info',
     server: {
       middlewareMode: true,
@@ -84,6 +86,7 @@ async function renderPage(req :Request, res : Response, viteServer? : ViteDevSer
     }
 }
 
+
 async function main(
   hmrPort? : number,
   root = "./src"
@@ -95,7 +98,11 @@ async function main(
     : ''
 
   const server = express()
-  const apiPath = Path.join(__dirname, "/backend/api");
+  const apiPath = resolve("backend/api");
+
+  createSiteMap().save(
+    isProd ? resolve("frontend/client/sitemap.xml") : resolve("frontend/public/sitemap.xml")
+  )
 
   let viteServer :ViteDevServer;
 

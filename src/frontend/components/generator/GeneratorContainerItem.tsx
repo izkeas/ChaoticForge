@@ -3,14 +3,16 @@ import { Grid, Paper, Box } from "@mui/material"
 
 interface Props {
     children : React.ReactNode;
+    wideSize? : number ; 
+    smallSize? : number;
 }
 
 export default function GeneratorContainerItem(props : Props){
     return (
         <Grid 
             item
-            xs={12} 
-            sm={6}
+            xs={props.smallSize || 12 } 
+            sm={props.wideSize || 6}
         >
             <Paper
                 elevation={12}

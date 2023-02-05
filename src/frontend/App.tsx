@@ -5,6 +5,7 @@ import NavigationBar from './components/NavigationBar';
 import Theme from './components/Theme';
 import React from "react"
 
+
 // Auto generates routes from files under ./pages
 // https://vitejs.dev/guide/features.html#glob-import
 const pages = import.meta.glob('./pages/**/*.tsx', { eager: true })
@@ -27,6 +28,7 @@ const routes : Route[] = Object.keys(pages).map((path) => {
     component: (pages[path] as any).default,
   }  
 })
+
 
 const navPages = [
   {

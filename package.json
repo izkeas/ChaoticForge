@@ -5,21 +5,18 @@
   "engines": {
     "node": "18"
   },
-  "tsup" : {
-    "format" : "esm",
-    "target" : "es2022"
+  "tsup": {
+    "format": "esm",
+    "target": "es2022"
   },
   "scripts": {
     "dev": "NODE_ENV=development tsx src/Server.ts",
-
     "build:frontend": "yarn run build:frontend:client && yarn run build:frontend:server",
     "build:frontend:client": "vite build src/frontend --outDir ../../dist/frontend/client --emptyOutDir",
     "build:frontend:server": "vite build --ssr src/frontend/entry-server.tsx --outDir dist/frontend/server",
-    "build:backend" : "tsup src/*.ts src/backend/api src/backend/lib/src --outDir dist",
-    "build" : "yarn run build:frontend & yarn run build:backend & wait",
-
+    "build:backend": "tsup src/*.ts src/backend/api src/backend/lib/src --outDir dist",
+    "build": "yarn run build:frontend & yarn run build:backend & wait",
     "generate:frontend": "vite build --outDir dist/static && npm run build:server && node prerender",
-
     "start": "NODE_ENV=production node dist/Server.js",
     "test": "vitest"
   },
@@ -39,7 +36,9 @@
     "faunadb": "^4.7.1",
     "file-saver": "^2.0.5",
     "glob": "^8.1.0",
+    "got": "^12.5.3",
     "import-glob": "^1.5.0",
+    "jsdom": "^21.1.0",
     "lodash-es": "^4.17.21",
     "node-schedule": "^2.1.1",
     "react": "^18.2.0",
@@ -56,6 +55,8 @@
     "@types/cors": "^2.8.13",
     "@types/file-saver": "^2.0.5",
     "@types/glob": "^8.0.1",
+    "@types/got": "^9.6.12",
+    "@types/jsdom": "^20.0.1",
     "@types/lodash": "^4.14.191",
     "@types/lodash-es": "^4.17.6",
     "@types/node-schedule": "^2.1.0",

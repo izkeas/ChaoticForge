@@ -5,7 +5,7 @@ import React, { ReactNode, useState } from "react";
 export interface Config { values : string[], value : string, onEdit : (value : string ) => void; }
 
 interface Props {
-    base : Config;
+    [key : string] : Config;
 }
 
 interface FieldProps {
@@ -82,12 +82,17 @@ export default class ConfigList extends React.Component<Props>{
                             <Box
                                 margin="10px 10px 25px"
                             >
+                            {   Object.entries(this.props).map( ([key,value] )=> (
+
                                 <ConfigField
-                                    keyName="Base"
-                                    value={this.props.base.value}
-                                    values={this.props.base.values}
-                                    onEdit={ (base,newValue) => this.props.base.onEdit(newValue)}
+                                    key={key}
+                                    keyName={key}
+                                    value={value.value}
+                                    values={value.values}
+                                    onEdit={ (base,newValue) => value.onEdit(newValue)}
                                 />
+                            ))}
+
                             </Box>
                         </Box>
                     </Box>

@@ -1,6 +1,7 @@
 import HomeItem from "../components/HomeItem"
 import HomeMenu from "../components/HomeMenu";
-import { BiUserPlus, BiWorld, BiPencil, BiEdit } from "react-icons/bi/index.js"
+import { BiUserPlus, BiWorld, BiPencil, BiEdit, BiTag } from "react-icons/bi/index.js"
+import { TbLetterN} from "react-icons/tb/index.js"
 import React, { useState } from "react";
 import Feedback from "../components/FeedBack";
 
@@ -25,6 +26,12 @@ export default function Home(){
           description='Create a character with story and characteristics'
           icon={BiUserPlus}
           href="/create/character"
+        />
+        <HomeItem
+          type="Name"
+          description='Generate a unique character name with different generators'
+          icon={TbLetterN}
+          href="/create/name"
         />
         <HomeItem
           type="World"

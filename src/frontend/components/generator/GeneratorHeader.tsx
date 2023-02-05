@@ -59,7 +59,7 @@ export default class GeneratorHeader extends React.Component<Props, States>{
                             variant="h1"
                             fontWeight={600}
                         >
-                            CHARACTER CREATOR
+                            {this.props.name}
                         </Typography>
     
 
